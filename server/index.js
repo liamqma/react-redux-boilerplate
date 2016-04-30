@@ -2,8 +2,13 @@ import express from 'express';
 import configureStore from '../common/store/configure-store';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
 import App from '../common/container/app';
+
+import webpack from 'webpack';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+import webpackConfig from '../webpack.config';
 
 const app = express();
 const port = 3000;
@@ -17,8 +22,9 @@ function renderFullPage(html, initialState) {
       <body>
         <div id="app">${html}</div>
         <script>
-          window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
+          window.INITIAL_STATE = ${JSON.stringify(initialState)}
         </script>
+        <script src="/static/bundle.js"></script>
       </body>
     </html>
     `;
@@ -41,6 +47,14 @@ function handleRender(req, res) {
   // Send the rendered page back to the client
   res.send(renderFullPage(html, finalState));
 }
+
+// Use this middleware to set up hot module reloading via webpack.
+const compiler = webpack(webpackConfig);
+app.use(webpackDevMiddleware(compiler, {
+  noInfo: true,
+  publicPath: webpackConfig.output.publicPath,
+}));
+app.use(webpackHotMiddleware(compiler));
 
 app.use(handleRender);
 

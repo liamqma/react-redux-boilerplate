@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "./node_modules/.bin/eslint server"
+    "lint": "./node_modules/.bin/eslint server client common",
+    "dev": "node server/babel-register.js"
   },
   "repository": {
     "type": "git",
@@ -25,13 +26,18 @@
     "redux": "^3.5.2"
   },
   "devDependencies": {
-    "babel-preset-es2015-node": "^4.0.2",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015-node": "^6.0.1",
     "babel-preset-react": "^6.5.0",
+    "babel-preset-react-hmre": "^1.1.1",
     "babel-register": "^6.7.2",
     "eslint": "^2.8.0",
     "eslint-config-airbnb": "^8.0.0",
     "eslint-plugin-import": "^1.6.1",
     "eslint-plugin-jsx-a11y": "^1.0.4",
-    "eslint-plugin-react": "^5.0.1"
+    "eslint-plugin-react": "^5.0.1",
+    "webpack": "^1.13.0",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-hot-middleware": "^2.10.0"
   }
 }

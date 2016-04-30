@@ -1,9 +1,8 @@
-import {connect} from 'react-redux';
-import React from 'react';
-import HelloWorld from '../component/hello-world';
+import { connect } from 'react-redux';
+import Items from '../component/items';
 
 function mapStateToProps(state) {
   return state;
 }
 
-export default connect(mapStateToProps)(HelloWorld);
+export default connect(mapStateToProps)(Items);
