@@ -58,7 +58,7 @@ if (isDevelopment()) {
   }));
   app.use(webpackHotMiddleware(compiler));
 } else {
-  app.use('/static', express.static(__dirname + '/static'));
+  app.use('/static', express.static(`${__dirname}/static`));
 }
 
 app.use(handleRender);
