@@ -4,9 +4,11 @@
   "description": "React Redux Boilerplate",
   "main": "build/server.js",
   "scripts": {
+    "start": "node build/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "./node_modules/.bin/eslint server client common",
-    "dev": "node server/babel-register.js"
+    "dev": "node server/babel-register.js",
+    "heroku-postbuild": "webpack --config webpack.server.config.js && webpack --config webpack.prod.config.js"
   },
   "repository": {
     "type": "git",
