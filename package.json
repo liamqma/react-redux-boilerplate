@@ -2,13 +2,12 @@
   "name": "react-redux-boilerplate",
   "version": "0.0.1",
   "description": "React Redux Boilerplate",
-  "main": "build/server.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node build/server.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "./node_modules/.bin/eslint server client common",
-    "dev": "node server/babel-register.js",
-    "heroku-postbuild": "webpack --config webpack.server.config.js && webpack --config webpack.prod.config.js"
+    "dev": "node server/babel-register.js"
   },
   "repository": {
     "type": "git",
