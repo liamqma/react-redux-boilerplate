@@ -1,5 +1,5 @@
-var path = require('path')
-var webpack = require('webpack')
+var path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
   devtool: 'inline-source-map',
@@ -24,9 +24,9 @@ module.exports = {
         exclude: /node_modules/,
         include: __dirname,
         query: {
-          presets: [ 'react-hmre' ]
+          presets: ['react-hmre']
         }
       }
     ]
   }
-}
+};

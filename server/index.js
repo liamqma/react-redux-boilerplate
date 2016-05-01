@@ -4,11 +4,12 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import App from '../common/container/app';
+import isDevelopment from './isDevelopment';
 
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-import webpackConfig from '../webpack.config';
+import webpackConfig from '../webpack.dev.config';
 
 const app = express();
 const port = 3000;
@@ -36,7 +37,7 @@ function handleRender(req, res) {
 
   // Render the component to a string
   const html = renderToString(
-    <Provider store={store}>
+    <Provider store={store} >
       <App />
     </Provider>
   );
@@ -48,13 +49,17 @@ function handleRender(req, res) {
   res.send(renderFullPage(html, finalState));
 }
 
+if (isDevelopment()) {
 // Use this middleware to set up hot module reloading via webpack.
-const compiler = webpack(webpackConfig);
-app.use(webpackDevMiddleware(compiler, {
-  noInfo: true,
-  publicPath: webpackConfig.output.publicPath,
-}));
-app.use(webpackHotMiddleware(compiler));
+  const compiler = webpack(webpackConfig);
+  app.use(webpackDevMiddleware(compiler, {
+    noInfo: true,
+    publicPath: webpackConfig.output.publicPath,
+  }));
+  app.use(webpackHotMiddleware(compiler));
+} else {
+  app.use('/static', express.static(__dirname + '/static'));
+}
 
 app.use(handleRender);
 
