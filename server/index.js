@@ -12,7 +12,7 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackConfig from '../webpack.dev.config';
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 function renderFullPage(html, initialState) {
   return `<!doctype html>
