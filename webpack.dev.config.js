@@ -24,8 +24,12 @@ module.exports = {
         exclude: /node_modules/,
         include: __dirname,
         query: {
-          presets: ['react-hmre']
+          presets: ['es2015', 'react', 'react-hmre']
         }
+      },
+      {
+        test: /\.css$/,
+        loaders: ['style', 'css?modules&localIdentName=[path]---[name]---[local]---[hash:base64:5]'],
       }
     ]
   }
