@@ -20,7 +20,8 @@ function renderFullPage(html, initialState) {
         <script>
           window.INITIAL_STATE = ${JSON.stringify(initialState)}
         </script>
-        <script src="http://localhost:8080/static/bundle.js"></script>
+        <script src="${isDevelopment() ? 'http://localhost:8080' : ''}/static/bundle.js"></script>
+        ${isDevelopment() ? '' : '<link href="/static/bundle.css" rel="stylesheet">'}
       </body>
     </html>
     `;

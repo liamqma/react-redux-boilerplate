@@ -9,7 +9,7 @@
     "lint": "./node_modules/.bin/eslint server client common",
     "dev-server": "node server/babel-register.js",
     "dev-client": "./node_modules/.bin/webpack-dev-server --hot --inline --config webpack/client-dev.js",
-    "heroku-postbuild": "webpack --config webpack.server.config.js && webpack --config webpack.prod.config.js"
+    "heroku-postbuild": "webpack --config webpack/server-prod.js && webpack --config webpack/client-prod.js"
   },
   "repository": {
     "type": "git",
@@ -41,6 +41,7 @@
     "eslint-plugin-import": "^1.6.1",
     "eslint-plugin-jsx-a11y": "^1.0.4",
     "eslint-plugin-react": "^5.0.1",
+    "extract-text-webpack-plugin": "^1.0.1",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1",
     "webpack-node-externals": "^1.2.0"
