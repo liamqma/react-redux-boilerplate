@@ -1,13 +1,12 @@
 var path = require('path');
 var webpack = require('webpack');
 var nodeExternals = require('webpack-node-externals');
+var query = require('./server-babel-config');
 
 module.exports = {
-  entry: [
-    './server/index.js'
-  ],
+  entry: path.join(__dirname, '..', 'server', 'index'),
   output: {
-    path: path.join(__dirname, 'build'),
+    path: path.join(__dirname, '..', 'build'),
     filename: 'server.js',
   },
   target: 'node',
@@ -18,9 +17,10 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.(js|css)$/,
         loader: 'babel',
         exclude: /node_modules/,
+        query: query,
       }
     ]
   }

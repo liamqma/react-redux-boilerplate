@@ -3,18 +3,14 @@ var webpack = require('webpack');
 
 module.exports = {
   devtool: 'inline-source-map',
-  entry: [
-    'webpack-hot-middleware/client',
-    './client/index.js'
-  ],
+  entry: path.join(__dirname, '..', 'client', 'index.js'),
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: __dirname,
     filename: 'bundle.js',
-    publicPath: '/static/'
+    publicPath: 'http://localhost:8080/static/'
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.optimize.OccurenceOrderPlugin()
   ],
   module: {
     loaders: [
@@ -22,9 +18,8 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel',
         exclude: /node_modules/,
-        include: __dirname,
         query: {
-          presets: ['es2015', 'react', 'react-hmre']
+          presets: ['es2015', 'react', 'react-hmre'],
         }
       },
       {

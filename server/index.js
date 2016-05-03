@@ -4,12 +4,7 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import App from '../common/container/app';
-import isDevelopment from './isDevelopment';
-
-import webpack from 'webpack';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
-import webpackConfig from '../webpack.dev.config';
+import isDevelopment from './is-development';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -25,7 +20,7 @@ function renderFullPage(html, initialState) {
         <script>
           window.INITIAL_STATE = ${JSON.stringify(initialState)}
         </script>
-        <script src="/static/bundle.js"></script>
+        <script src="http://localhost:8080/static/bundle.js"></script>
       </body>
     </html>
     `;
@@ -49,15 +44,7 @@ function handleRender(req, res) {
   res.send(renderFullPage(html, finalState));
 }
 
-if (isDevelopment()) {
-// Use this middleware to set up hot module reloading via webpack.
-  const compiler = webpack(webpackConfig);
-  app.use(webpackDevMiddleware(compiler, {
-    noInfo: true,
-    publicPath: webpackConfig.output.publicPath,
-  }));
-  app.use(webpackHotMiddleware(compiler));
-} else {
+if (!isDevelopment()) {
   app.use('/static', express.static(`${__dirname}/static`));
 }
 
