@@ -14,6 +14,7 @@ function renderFullPage(html, initialState) {
     <html>
       <head>
         <title>React Redux Boilerplate</title>
+        ${isDevelopment() ? '' : '<link href="/static/bundle.css" rel="stylesheet">'}
       </head>
       <body>
         <div id="app">${html}</div>
@@ -21,7 +22,6 @@ function renderFullPage(html, initialState) {
           window.INITIAL_STATE = ${JSON.stringify(initialState)}
         </script>
         <script src="${isDevelopment() ? 'http://localhost:8080' : ''}/static/bundle.js"></script>
-        ${isDevelopment() ? '' : '<link href="/static/bundle.css" rel="stylesheet">'}
       </body>
     </html>
     `;
