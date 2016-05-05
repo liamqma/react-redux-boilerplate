@@ -7,7 +7,7 @@
     "start": "node build/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "./node_modules/.bin/eslint server client common",
-    "dev-server": "node server/babel-register.js",
+    "dev-server": "./node_modules/.bin/nodemon server/babel-register.js",
     "dev-client": "./node_modules/.bin/webpack-dev-server --hot --inline --config webpack/client-dev.js",
     "heroku-postbuild": "webpack --config webpack/server-prod.js && webpack --config webpack/client-prod.js"
   },
@@ -43,6 +43,7 @@
     "eslint-plugin-jsx-a11y": "^1.0.4",
     "eslint-plugin-react": "^5.0.1",
     "extract-text-webpack-plugin": "^1.0.1",
+    "nodemon": "^1.9.2",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1",

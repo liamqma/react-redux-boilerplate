@@ -1,7 +1,19 @@
 .items {
-  list-style-type: none;
+  column-count: 3;
+  column-gap: 0;
 }
 
 .item {
-  float: left;
+  width: 100%;
+  opacity: 0.9;
+  transition: .8s opacity;
+  display: block;
+}
+
+.items:hover .item{
+  opacity: 0.3;
+}
+
+.items:hover .item:hover {
+  opacity: 1;
 }

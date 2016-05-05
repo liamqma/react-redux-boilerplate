@@ -1,0 +1,8 @@
+:global(body) {
+  background: black;
+}
+
+.app {
+  width: 900px;
+  margin: 5em auto 0;
+}

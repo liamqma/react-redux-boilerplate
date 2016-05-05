@@ -3,11 +3,11 @@ import styles from './items.css';
 
 export default function Items(props) {
   return (
-    <ul className={styles.items}>
+    <div className={styles.items}>
       {props.items.map((item, index) =>
-        <li className={styles.item} key={index} ><img role="presentation" src={item.src} /></li>
+        <img className={styles.item} key={index}role="presentation" src={item.src} />
       )}
-    </ul>
+    </div>
   );
 }
 
